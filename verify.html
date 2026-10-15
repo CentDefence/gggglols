@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0b0a12"><title>Link accounts · TRS CIS League</title>
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+:root{color-scheme:dark;--violet:#9879ff;--green:#39d99a;--muted:#aaa6bd;--line:#ffffff18;--e:cubic-bezier(.22,1,.36,1)}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;min-height:100vh;font-family:Inter,Montserrat,system-ui,sans-serif;color:#f5f3fa;background:#0a0910;display:flex;flex-direction:column;overflow-x:hidden}
+.wall{position:fixed;inset:-20%;z-index:0;display:grid;grid-template-columns:repeat(6,1fr);gap:22px;transform:rotate(-9deg);opacity:.42;filter:blur(2.5px) saturate(.8);pointer-events:none}
+.wall div{aspect-ratio:3/4;border-radius:22px;border:1px solid #ffffff14;background:linear-gradient(160deg,#241c3a,#13111d);display:grid;place-items:center;padding:22%}
+.wall div:nth-child(3n+2){transform:translateY(46px)}.wall div:nth-child(3n){transform:translateY(-28px)}
+.wall img{width:100%;height:100%;object-fit:contain;opacity:.85}
+.shade{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 50% 40%,#0a091000 0,#0a0910cc 62%),radial-gradient(ellipse at 15% 0,#3a276a66 0,transparent 45%),radial-gradient(ellipse at 90% 100%,#4a1f5455 0,transparent 40%)}
+header{position:relative;z-index:3;height:68px;padding:0 clamp(18px,4vw,44px);display:flex;align-items:center}
+header a{display:flex;align-items:center;gap:11px;color:#fff;text-decoration:none;font-weight:800;font-size:15px}
+header img{width:30px;height:30px;object-fit:contain}
+main{position:relative;z-index:3;flex:1;display:grid;place-items:center;padding:18px 14px 30px}
+.card{width:min(460px,100%);padding:clamp(26px,5vw,38px);background:linear-gradient(160deg,#1c1830e8,#12111b);border:1px solid #ffffff22;border-radius:22px;box-shadow:0 30px 110px #000c,inset 0 1px 0 #ffffff14;backdrop-filter:blur(8px);animation:up .8s var(--e) both}
+@keyframes up{from{opacity:0;transform:translateY(18px) scale(.985)}}
+.crest{width:84px;height:84px;margin:0 auto 18px;display:grid;place-items:center;border-radius:50%;background:radial-gradient(circle,#8a6cf033,transparent 70%)}
+.crest img{width:66px;height:66px;object-fit:contain;filter:drop-shadow(0 0 18px #9879ff77)}
+.eyebrow{text-align:center;color:#b9a0ff;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+h1{text-align:center;font-size:clamp(23px,5vw,29px);letter-spacing:-.03em;margin:10px 0 8px}
+.sub{text-align:center;color:var(--muted);line-height:1.6;font-size:14px;margin:0}
+.steps{display:flex;align-items:flex-start;margin:26px 4px 24px}
+.step{display:flex;flex-direction:column;align-items:center;gap:8px;width:64px;color:#9a96ad;font-size:11px;font-weight:700}
+.step i{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:12px;background:#201e2c;border:1px solid #3c3950}
+.step.on{color:#fff}.step.on i{background:#1b1730;border:2px solid #a98cff;box-shadow:0 0 0 5px #8a6cf02b}
+.step.done i{background:#6f55cc;border-color:#b79dff;color:#fff}
+.ln{flex:1;height:1px;margin-top:16px;background:#ffffff1f}
+.ln.fill{background:linear-gradient(90deg,#9879ff,#ffffff1f)}
+.perks{list-style:none;margin:0 0 4px;padding:0;display:grid;gap:12px}
+.perks li{display:flex;gap:12px;align-items:center;font-size:13.5px;line-height:1.45;color:#dcd8e8}
+.perks .ic{flex:none;width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:#2a2540;border:1px solid #ffffff12}
+.perks svg{width:15px;height:15px;fill:none;stroke:#c3a9ff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.notice{display:none;margin-top:16px;padding:12px 14px;border-radius:10px;background:#46222b;border:1px solid #ff6b7e33;color:#ffbac2;font-size:12.5px;line-height:1.5}
+.notice.on{display:block}
+.cta{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:52px;margin-top:22px;border:0;border-radius:12px;background:linear-gradient(100deg,#7a5cf0,#5865f2);color:#fff;text-decoration:none;font:800 14px Inter,Montserrat,system-ui,sans-serif;cursor:pointer;box-shadow:0 12px 34px #5865f255;transition:transform .25s var(--e),filter .2s}
+.cta:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.cta svg{width:20px;height:20px;fill:currentColor}
+.cta.rb{background:linear-gradient(100deg,#2e2c3d,#1d1b29);border:1px solid #ffffff2b;box-shadow:0 12px 34px #0006}
+.safe{display:flex;align-items:center;justify-content:center;gap:7px;text-align:center;margin-top:15px;font-size:11.5px;color:#8a869b}
+.safe svg{width:13px;height:13px;flex:none;fill:none;stroke:#aaa2b8;stroke-width:1.7}
+.bot{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);text-align:center;font-size:12px;color:#8f8aa3}
+.bot code{padding:2px 7px;border-radius:6px;background:#ffffff10;color:#d8ccff;font-size:12px}
+footer{position:relative;z-index:3;text-align:center;color:#78748a;font-size:12px;padding:6px 14px calc(22px + env(safe-area-inset-bottom,0px))}
+footer a{color:#cfc8e4;font-weight:700;text-decoration:none;cursor:pointer}footer a:hover{color:#fff}
+
+body.b .wall{opacity:.14}
+.top2{position:relative;z-index:3;height:60px;padding:0 clamp(18px,4vw,44px);display:none;align-items:center;gap:14px;border-bottom:1px solid #ffffff12;background:#0c0b12cc}
+body.b .top2{display:flex}body.b header{display:none}
+.top2 a{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:800;font-size:15px}
+.top2 img{width:26px;height:26px;object-fit:contain}
+.top2 i{width:1px;height:18px;background:#ffffff25}
+.top2 .sp{color:#a8a3ba;font-weight:600;font-size:13px}
+#vA,#vB{display:none}
+body:not(.b) #vA{display:block}body.b #fA{display:none}body.b #vB{display:block}
+.vcard{width:min(480px,100%);padding:26px;background:linear-gradient(160deg,#17161f,#101017);border:1px solid #ffffff1c;border-radius:16px;box-shadow:0 30px 100px #000a;animation:up .7s var(--e) both}
+.vcard h1{text-align:left;font-size:25px;margin:2px 0 18px;letter-spacing:-.03em}
+.row{display:flex;align-items:center;gap:13px;padding:12px 14px;margin-bottom:10px;border:1px solid #ffffff26;border-radius:10px;background:#0d0c13;min-height:66px}
+.row.ok{border-color:#2ee08a}
+.row img{width:42px;height:42px;border-radius:50%;object-fit:cover;background:#26232f;flex:none}
+.row small{display:block;color:#b6b1c7;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.row b{display:block;margin-top:3px;font-size:16px}
+.row .chk{margin-left:auto;width:20px;height:20px;fill:none;stroke:#2ee08a;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.row .conn{margin-left:auto;padding:8px 14px;border-radius:8px;background:linear-gradient(100deg,#7a5cf0,#5865f2);color:#fff;text-decoration:none;font-size:12px;font-weight:800;white-space:nowrap}
+.row.off{opacity:.9}
+.row .ph{width:42px;height:42px;border-radius:50%;background:#1f1d2a;border:1px dashed #4a465e;flex:none}
+.vbtn2{display:block;width:100%;margin-top:6px;padding:14px;border:0;border-radius:8px;background:linear-gradient(100deg,#8a6cf0,#5f8bff);color:#0b0a14;font:800 14px Inter,Montserrat,system-ui,sans-serif;cursor:pointer;transition:filter .2s,transform .2s}
+.vbtn2:hover:not([disabled]){filter:brightness(1.1);transform:translateY(-1px)}
+.vbtn2[disabled]{background:#2a2838;color:#7c778e;cursor:not-allowed}
+.vbtn2.done{background:#2ee08a;color:#06251a}
+.another{display:block;text-align:center;margin-top:16px;color:#e8e4f4;font-size:13px;font-weight:700;text-decoration:none}
+.another:hover{color:#fff;text-decoration:underline}
+.hint{margin:12px 2px 0;font-size:12px;color:#8f8aa3;text-align:center}
+foot2{display:none}
+body.b .legalrow{display:flex}
+.legalrow{display:none;justify-content:space-between;align-items:center;max-width:960px;width:100%;margin:0 auto}
+.legalrow a{margin-left:18px}
+@media(max-width:420px){.wall{grid-template-columns:repeat(4,1fr)}.step{width:54px;font-size:10px}}
+@media(prefers-reduced-motion:reduce){.card{animation:none}}
+</style></head><body>
+<div class="wall" aria-hidden="true">
+<div><img src="logo-tcl.png" alt=""></div><div><img src="assets/teams/liverpool.png" alt=""></div><div><img src="logo-season10.png" alt=""></div><div><img src="assets/teams/manchester-united.png" alt=""></div><div><img src="assets/teams/brazil.svg" alt=""></div><div><img src="assets/teams/porto.png" alt=""></div>
+<div><img src="logo-season8.png" alt=""></div><div><img src="assets/teams/tottenham.png" alt=""></div><div><img src="assets/teams/como.png" alt=""></div><div><img src="assets/teams/egypt.svg" alt=""></div><div><img src="assets/teams/aston-villa.png" alt=""></div><div><img src="assets/teams/mexico.svg" alt=""></div>
+<div><img src="assets/teams/colombia.svg" alt=""></div><div><img src="logo-tcl.png" alt=""></div><div><img src="assets/teams/liverpool.png" alt=""></div><div><img src="logo-season10.png" alt=""></div><div><img src="assets/teams/porto.png" alt=""></div><div><img src="assets/teams/manchester-united.png" alt=""></div>
+</div><div class="shade"></div>
+<header><a href="/"><img src="logo-tcl.png" alt="">TRS CIS League</a></header>
+<div class="top2"><a href="/"><img src="logo-tcl.png" alt="">TRS CIS League</a><i></i><a class="sp" href="https://discord.gg/SumezUkpm" target="_blank" rel="noopener">Support</a></div>
+<main><div id="vA"><section class="card">
+<div class="crest"><img src="logo-tcl.png" alt=""></div>
+<div class="eyebrow">Account linking</div>
+<h1 id="title">Welcome to TRS CIS League</h1>
+<p class="sub" id="description">Connect your Discord and Roblox accounts. It takes about 30 seconds.</p>
+<div class="steps" aria-label="Verification progress">
+<div class="step on" id="s1"><i>1</i>Discord</div><div class="ln" id="l1"></div>
+<div class="step" id="s2"><i>2</i>Roblox</div><div class="ln" id="l2"></div>
+<div class="step" id="s3"><i>3</i>Done</div></div>
+<ul class="perks">
+<li><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.5 6.7 19.4l1.2-6L3.4 9.3l6-.7L12 3Z"/></svg></span>The league bot gives you the verified role in our Discord, automatically</li>
+<li><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 20l4-1 11-11-3-3L5 16l-1 4Z"/><path d="m14 7 3 3"/></svg></span>Your server nickname is set to your Roblox username</li>
+<li><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4.5-6 8-6s7 2 8 6"/></svg></span>Get a player profile that anyone can find in search</li>
+</ul>
+<div class="notice" id="notice"></div>
+<a class="cta" id="continue" href="/api/auth/discord"><svg id="cta-ic" viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg><span id="cta-t">Continue with Discord</span></a>
+<div class="safe"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>You log in on Discord's and Roblox's own sites. We never see your password.</div>
+<div class="bot" id="bot">Prefer Discord? Run <code>/verify</code> in the league server and the bot will send you a private link.</div>
+</section></div>
+<div id="vB"><section class="vcard"><h1 id="bt">Verify your account</h1>
+<div class="row" id="rowD"></div><div class="row" id="rowR"></div>
+<div class="notice" id="notice2"></div>
+<button class="vbtn2" id="verifyBtn" type="button" disabled>Verify me</button>
+<a class="another" id="another" href="/api/auth/reset">Use another account</a>
+<p class="hint" id="hintB"></p></section></div></main>
+<footer><span id="fA">TRS CIS League &middot; <a data-legal="terms">Terms &amp; Privacy</a></span><div class="legalrow"><span>&copy; 2026 TRS CIS League</span><span><a data-legal="terms">Terms</a><a data-legal="privacy">Privacy</a></span></div></footer>
+<script>
+(function(){
+function $(i){return document.getElementById(i)}
+function esc(v){var e=document.createElement('span');e.textContent=String(v==null?'':v);return e.innerHTML}
+var p=new URLSearchParams(location.search),error=p.get('error'),fresh=p.get('fresh')?'?fresh=1':'';
+var DC='<path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>';
+$('cta-ic').innerHTML=DC;
+$('continue').href='/api/auth/discord'+fresh;
+var msg={state:'This sign-in link expired or could not be confirmed. Please start again.',discord:'Discord could not be connected. Please try again.',roblox:'Roblox could not be connected. Please try again.','already-linked':'This Discord or Roblox account is already linked to another profile.',setup:'The verification service needs administrator setup before it can be used.'};
+var errText=error?(msg[error]||'Something went wrong. Please try again.'):'';
+if(errText){$('notice').textContent=errText;$('notice').classList.add('on')}
+var CHK='<svg class="chk" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7"/></svg>';
+var FB='logo-tcl.png';
+function showB(s){
+  document.body.classList.add('b');
+  var d=s.discord,r=s.roblox;
+  $('rowD').className='row ok';
+  $('rowD').innerHTML='<img alt="" src="'+esc(d.avatar||FB)+'" onerror="this.src=\''+FB+'\'"><div><small>Discord</small><b>'+esc(d.username)+'</b></div>'+CHK;
+  if(r){$('rowR').className='row ok';$('rowR').innerHTML='<img alt="" src="'+esc(r.avatar||FB)+'" onerror="this.src=\''+FB+'\'"><div><small>Roblox</small><b>'+esc(r.displayName||r.username)+'</b></div>'+CHK}
+  else{$('rowR').className='row off';$('rowR').innerHTML='<span class="ph"></span><div><small>Roblox</small><b>Not connected</b></div><a class="conn" href="/api/auth/roblox'+fresh+'">Connect Roblox</a>'}
+  var btn=$('verifyBtn');btn.disabled=!r;
+  $('hintB').textContent=r?'':'Connect your Roblox account to continue.';
+  if(errText){$('notice2').textContent=errText;$('notice2').classList.add('on')}
+  if(s.verified){btn.textContent='Open my profile';btn.classList.add('done');btn.disabled=false;btn.onclick=function(){location.href='/profile.html'};$('hintB').textContent='You are already verified.';return}
+  btn.onclick=function(){
+    btn.disabled=true;btn.textContent='Verifying\u2026';$('notice2').classList.remove('on');
+    fetch('/api/verify',{method:'POST',credentials:'same-origin'}).then(function(res){return res.json().catch(function(){return{}}).then(function(j){return{ok:res.ok,j:j}})}).then(function(o){
+      if(o.ok){btn.textContent='Verified \u2713';btn.classList.add('done');$('hintB').textContent='Role and nickname are being set. Opening your profile\u2026';setTimeout(function(){location.href='/profile.html'},1200);return}
+      var e=o.j&&o.j.error,m={'already-linked':'This Discord or Roblox account is already linked to another profile.',bot:'Your accounts are connected, but the bot could not set your role. Ask a server administrator to check the bot permissions, then try again.',reconnect:'Your Discord sign-in expired. Use another account / reconnect and try again.',not_connected:'Connect both accounts first.',setup:'The verification service needs administrator setup before it can be used.'};
+      $('notice2').textContent=m[e]||'Verification failed. Please try again.';$('notice2').classList.add('on');btn.disabled=false;btn.textContent='Verify me';
+    }).catch(function(){$('notice2').textContent='Network error. Please try again.';$('notice2').classList.add('on');btn.disabled=false;btn.textContent='Verify me'});
+  };
+}
+fetch('/api/session',{credentials:'same-origin',cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(s){
+  if(s&&s.discord){
+    if(s.verified&&!error&&!p.get('stay')){location.replace('/profile.html');return}
+    showB(s);
+  }
+}).catch(function(){});
+})();
+</script>
+<script src="tcl-ui.js" defer></script>
+</body></html>

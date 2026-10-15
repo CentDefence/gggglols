@@ -1,0 +1,17 @@
+# Copy these values into Vercel Project Settings → Environment Variables.
+# Do not commit real secrets to source control.
+PUBLIC_SITE_URL=https://trscisleague.vercel.app
+SESSION_SECRET=replace-with-a-long-random-secret-at-least-32-characters
+UPSTASH_REDIS_REST_URL=https://your-database.upstash.io
+UPSTASH_REDIS_REST_TOKEN=replace-with-upstash-rest-token
+DISCORD_CLIENT_ID=
+DISCORD_CLIENT_SECRET=
+DISCORD_PUBLIC_KEY=
+DISCORD_BOT_TOKEN=
+DISCORD_GUILD_ID=
+DISCORD_VERIFIED_ROLE_ID=
+ROBLOX_CLIENT_ID=
+ROBLOX_CLIENT_SECRET=
+
+# Shared secret between the website and the always-on bot (32+ random characters). Use the same value in the bot .env
+BOT_API_SECRET=

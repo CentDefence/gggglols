@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0b0a12"><title>Player profile · TRS CIS League</title>
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+:root{color-scheme:dark;--violet:#a98cff;--green:#39d99a;--muted:#9a96ad;--line:#ffffff17;--card:#15141d;--e:cubic-bezier(.22,1,.36,1)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Inter,Montserrat,system-ui,sans-serif;color:#f5f3fa;background:radial-gradient(ellipse at 10% 0,#3a2868 0,transparent 40%),radial-gradient(ellipse at 95% 100%,#432047 0,transparent 38%),#0a0910;background-attachment:fixed}
+a{color:inherit}
+.top{position:sticky;top:0;z-index:30;height:74px;padding:0 clamp(14px,3vw,40px);display:flex;align-items:center;gap:18px;background:linear-gradient(#0a0910dd,#0a091000);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:15px;text-decoration:none;white-space:nowrap}
+.brand img{width:30px;height:30px;object-fit:contain}
+.pill{display:flex;gap:2px;padding:5px;border:1px solid var(--line);border-radius:14px;background:#13121b}
+.pill a{padding:8px 13px;border-radius:10px;font-size:13px;font-weight:700;color:#bdb8cc;text-decoration:none;white-space:nowrap}
+.pill a:hover{color:#fff}.pill a.on{background:#45337f;color:#fff}
+.srch{margin-left:auto;display:flex;align-items:center;gap:9px;min-width:210px;padding:11px 14px;border:1px solid var(--line);border-radius:12px;background:#13121b;color:#8f8aa3;font-size:13px;text-decoration:none}
+.srch svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8}
+.who{display:flex;align-items:center;gap:10px;font-size:13px;color:#cfcade}
+.who img{width:32px;height:32px;border-radius:50%;object-fit:cover;background:#2a2736}
+.who button,.who a.lo{white-space:nowrap;border:0;background:none;color:#8f8aa3;font:inherit;font-size:12px;cursor:pointer;text-decoration:none}
+.who button:hover{color:#fff}
+.vbtn{padding:9px 14px;border-radius:10px;border:1px solid #9a7bea;background:linear-gradient(110deg,#6248b5,#483e96);color:#fff;font-size:12px;font-weight:800;text-decoration:none}
+.wrap{width:min(1040px,calc(100% - 28px));margin:14px auto 70px}
+.hero{position:relative;overflow:hidden;display:flex;align-items:center;gap:26px;padding:34px;border:1px solid var(--line);border-radius:26px;background:linear-gradient(180deg,#2a2146,#16141f 70%)}
+.hero:before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 15% 0,#8a6cf033,transparent 55%);pointer-events:none}
+.avwrap{position:relative;flex:none}
+.avatar{width:112px;height:112px;border-radius:26px;object-fit:cover;background:#26232f;border:1px solid #ffffff22;display:block}
+.dot{position:absolute;right:-6px;bottom:-6px;width:26px;height:26px;border-radius:50%;background:var(--green);border:4px solid #1b1728;display:grid;place-items:center}
+.dot svg{width:12px;height:12px;fill:none;stroke:#0a2a1d;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.hi{font-size:13px;color:#a8a3ba}
+h1{margin:4px 0 2px;font-size:clamp(28px,5vw,42px);letter-spacing:-.04em}
+.handle{color:#a8a3ba;font-size:15px}
+.chips{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+.chip{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:999px;font-size:12px;font-weight:800;text-decoration:none;border:1px solid #5865f288;background:#5865f222;color:#e4e6ff}
+.chip.rb{border-color:#ffffff30;background:#ffffff0d;color:#fff}
+.chip svg{width:14px;height:14px;fill:currentColor}
+.tiles{margin-left:auto;display:flex;gap:10px;position:relative}
+.tile{min-width:92px;padding:15px 17px;border:1px solid var(--line);border-radius:16px;background:#0f0e15cc}
+.tile b{display:block;font-size:26px;letter-spacing:-.03em;line-height:1}
+.tile b em{font-style:normal;font-size:14px;color:var(--muted);font-weight:600}
+.tile small{display:block;margin-top:8px;color:var(--muted);font-size:12px}
+.tabs{display:inline-flex;gap:4px;margin:16px 0 4px;padding:5px;border:1px solid var(--line);border-radius:14px;background:#12111a}
+.tabs button{padding:9px 16px;border:0;border-radius:10px;background:none;color:#a39fb6;font:700 13px Inter,Montserrat,system-ui,sans-serif;cursor:pointer;display:flex;align-items:center;gap:7px}
+.tabs button.on{background:#45337f;color:#fff}
+.tabs button[disabled]{opacity:.55;cursor:not-allowed}
+.tabs svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2}
+.pane{display:none;animation:in .5s var(--e)}.pane.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(10px)}}
+h2{margin:26px 0 4px;font-size:22px;letter-spacing:-.03em}
+.sub{margin:0 0 14px;color:var(--muted);font-size:13px}
+.panel{border:1px solid var(--line);border-radius:20px;background:linear-gradient(#17161f,#12111a);padding:12px}
+.strip{display:flex;align-items:center;gap:13px;padding:14px;border:1px solid var(--line);border-radius:14px;background:#1b1a24}
+.strip .ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:#2a2740;position:relative;flex:none}
+.strip .ic img{width:24px;height:24px;object-fit:contain}
+.strip b{display:block;font-size:14px}.strip small{display:block;margin-top:3px;color:var(--muted);font-size:12px;line-height:1.4}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px}
+.metric{padding:15px 16px;border:1px solid var(--line);border-radius:14px;background:#13121a;min-width:0}
+.metric small{display:block;color:var(--muted);font-size:12px;margin-bottom:7px}
+.metric b{font-size:19px;letter-spacing:-.02em;overflow-wrap:anywhere}
+.duo{display:grid;grid-template-columns:1.4fr 1fr;gap:14px;margin-top:16px}
+.box{display:flex;align-items:center;gap:20px;padding:24px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(#17161f,#12111a)}
+.ring{position:relative;width:78px;height:78px;flex:none}
+.ring svg{width:78px;height:78px;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:7}
+.ring .bg{stroke:#2a2833}.ring .fg{stroke:#a98cff;stroke-linecap:round;stroke-dasharray:213.6;stroke-dashoffset:213.6;animation:ring 1.4s .2s var(--e) forwards}
+@keyframes ring{to{stroke-dashoffset:0}}
+.box small{color:var(--muted);font-size:12px;display:block}
+.box strong{display:block;font-size:32px;letter-spacing:-.04em;margin:3px 0}
+.box strong.g{color:var(--green)}
+.acct{display:flex;align-items:center;gap:14px;padding:14px;border:1px solid var(--line);border-radius:14px;background:#1b1a24;margin-bottom:8px}
+.acct img{width:54px;height:54px;border-radius:15px;object-fit:cover;background:#26232f}.acct.rb img{border-radius:50%}
+.acct strong{display:block;font-size:15px}.acct small{display:block;margin-top:4px;color:var(--muted);font-size:12px}
+.acct a{color:#c3adff;text-decoration:none}
+.acct .ok{margin-left:auto;padding:6px 10px;border-radius:999px;background:#39d99a1a;border:1px solid #39d99a44;color:#55e2ad;font-size:11px;font-weight:800}
+.soon{padding:40px 20px;text-align:center;color:var(--muted);font-size:14px}
+.state{width:min(520px,calc(100% - 30px));margin:16vh auto;text-align:center;padding:36px;border:1px solid var(--line);border-radius:20px;background:#14131b;color:#d6d1e1}
+.state a{color:#c3adff}
+footer{text-align:center;color:#78748a;font-size:12px;padding:10px 14px calc(26px + env(safe-area-inset-bottom,0px))}
+footer a{color:#cfc8e4;font-weight:700;cursor:pointer;text-decoration:none}
+@media(max-width:900px){.pill{display:none}.srch{min-width:0}.srch span{display:none}.hero{flex-wrap:wrap}.tiles{margin-left:0;width:100%}.tile{flex:1}.metrics{grid-template-columns:1fr 1fr}.duo{grid-template-columns:1fr}.who .nm{display:none}}
+@media(max-width:520px){.hero{padding:22px;gap:18px;flex-direction:column;text-align:center}.chips{justify-content:center}.avatar{width:96px;height:96px}.brand span{display:none}.box{padding:18px}}
+@media(prefers-reduced-motion:reduce){.pane,.ring .fg{animation:none;stroke-dashoffset:0}}
+</style></head><body>
+<header class="top">
+<a class="brand" href="/"><img src="logo-tcl.png" alt=""><span>TRS CIS League</span></a>
+<nav class="pill" aria-label="Main"><a href="/#home">Home</a><a href="/#s7">7 Season</a><a href="/#s8">8 Season</a><a href="/#s9">9 Season</a><a href="/#s10">10 Season</a><a href="/#about">About</a><a id="mine" href="/profile.html" class="on">My profile</a></nav>
+<a class="srch" href="/#search"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 5 5"/></svg><span>Search players&hellip;</span></a>
+<div class="who" id="who"></div>
+</header>
+<main id="app"><div class="state">Loading profile&hellip;</div></main>
+<footer>TRS CIS League &middot; <a data-legal="terms">Terms &amp; Privacy</a></footer>
+<script>
+(function(){
+var app=document.getElementById('app'),who=document.getElementById('who');
+var DC='<svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.8 19.8 0 0 0-4.885-1.515c-.211.375-.445.865-.608 1.25a18.3 18.3 0 0 0-5.487 0c-.163-.393-.406-.875-.618-1.25A19.7 19.7 0 0 0 3.8 4.37C.533 9.05-.32 13.58.1 18.06a19.9 19.9 0 0 0 6.1 3.07c.49-.67.93-1.38 1.3-2.13-.71-.27-1.38-.6-2.01-.98.17-.12.33-.25.49-.38 3.93 1.79 8.18 1.79 12.06 0 .16.13.33.26.49.38-.64.38-1.31.71-2.02.98.37.75.81 1.46 1.3 2.13a19.8 19.8 0 0 0 6.1-3.07c.5-5.18-.84-9.67-3.55-13.69ZM8.02 15.33c-1.18 0-2.16-1.09-2.16-2.42s.95-2.42 2.16-2.42 2.18 1.1 2.16 2.42c0 1.33-.95 2.42-2.16 2.42Zm7.97 0c-1.18 0-2.16-1.09-2.16-2.42s.96-2.42 2.16-2.42 2.18 1.1 2.16 2.42c0 1.33-.95 2.42-2.16 2.42Z"/></svg>';
+var RB='<svg viewBox="0 0 24 24"><path fill-rule="evenodd" d="M5.16 0 0 18.84 18.84 24 24 5.16 5.16 0Zm8.73 14.91-3.82-1.01 1.01-3.82 3.82 1.01-1.01 3.82Z"/></svg>';
+function esc(v){var e=document.createElement('span');e.textContent=String(v==null?'':v);return e.innerHTML}
+function fmt(d){var x=new Date(d);return isNaN(x)?'\u2014':x.toLocaleDateString(undefined,{day:'2-digit',month:'short',year:'numeric'})}
+var FB='logo-tcl.png';function av(u){return u||FB}
+function api(u){return fetch(u,{credentials:'same-origin',cache:'no-store'})}
+var target=(new URLSearchParams(location.search).get('u')||'').trim().replace(/^@/,'');
+
+api('/api/profile').then(function(r){return r.ok?r.json():null}).catch(function(){return null}).then(function(me){
+  if(me){
+    who.innerHTML='<img alt="" src="'+esc(av(me.roblox.avatar))+'" onerror="this.src=FB"><span class="nm">'+esc(me.roblox.displayName)+'</span><button id="lo">Log out</button>';
+    document.getElementById('lo').onclick=function(){location.assign('/api/logout')};
+  }else who.innerHTML='<a class="vbtn" href="/verify.html">Verify</a>';
+  var own=me&&(!target||me.roblox.username.toLowerCase()===target.toLowerCase());
+  if(own)return render(me,true);
+  if(!target){location.replace('/verify.html');return}
+  document.getElementById('mine').classList.remove('on');
+  document.getElementById('mine').setAttribute('href',me?'/profile.html':'/verify.html');
+  api('/api/player?u='+encodeURIComponent(target)).then(function(r){
+    if(r.status===404){app.innerHTML='<div class="state"><h2 style="margin-top:0">No verified profile</h2><p class="sub">'+esc(target)+' has not verified their account yet.</p><a href="/#search">Back to player search</a></div>';return null}
+    if(!r.ok)throw 0;return r.json()
+  }).then(function(p){if(p)render(p,false)}).catch(function(){app.innerHTML='<div class="state"><h2 style="margin-top:0">Could not load profile</h2><p class="sub">Please reload in a moment.</p></div>'});
+});
+
+function render(p,own){
+  var ver=p.verified!==false;
+  var r=p.roblox,d=p.discord;document.title=r.displayName+' \u00b7 TRS CIS League';
+  var rbUrl=r.profile||('https://www.roblox.com/users/'+encodeURIComponent(r.id||'')+'/profile');
+  var met=[['Verified on',ver?fmt(p.verifiedAt):'\u2014'],['Roblox',own&&r.id?'#'+r.id:'@'+r.username],['Discord','@'+(d.handle||d.username)],['Accounts','2 / 2']];
+  app.innerHTML='<div class="wrap">'+
+  '<section class="hero"><div class="avwrap"><img class="avatar" alt="" src="'+esc(av(r.avatar))+'" onerror="this.src=FB"><span class="dot" style="'+(ver?'':'background:#f0b84a')+'"><svg viewBox="0 0 24 24"><path d="'+(ver?'m5 12 5 5 9-10':'M12 7v6m0 4h.01')+'"/></svg></span></div>'+
+  '<div style="position:relative">'+(own?'<div class="hi">Hey '+esc(d.username)+'</div>':'<div class="hi">'+(ver?'Verified player':'Player')+'</div>')+'<h1>'+esc(r.displayName)+'</h1><div class="handle">@'+esc(r.username)+'</div>'+
+  '<div class="chips"><span class="chip">'+DC+esc(d.handle||d.username)+'</span><a class="chip rb" href="'+esc(rbUrl)+'" target="_blank" rel="noopener">'+RB+esc(r.username)+'</a></div></div>'+
+  '<div class="tiles"><div class="tile"><b>'+(ver?'\u2713':'\u2014')+'</b><small>'+(ver?'Verified':'Not verified')+'</small></div><div class="tile"><b>2<em>/2</em></b><small>Accounts</small></div></div></section>'+
+  '<div class="tabs" role="tablist"><button class="on" data-t="ov">Overview</button><button data-t="ac">Accounts</button><button disabled title="Coming soon"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Integrations</button></div>'+
+  '<div class="pane on" id="ov"><h2>League</h2><p class="sub">Verification status and your linked accounts.</p>'+
+  '<div class="panel"><div class="strip"><span class="ic"><img src="logo-tcl.png" alt=""></span><div>'+(ver?'<b>Verified TRS CIS League member</b><small>The league bot has given '+(own?'you':esc(r.displayName))+' the verified role and set the server nickname to the Roblox username.</small>':'<b>Almost there \u2014 you are signed in</b><small>Press Verify me to get the verified role and a public player profile.</small>')+'</div>'+(ver?'':'<a class="vbtn" style="margin-left:auto" href="/verify.html?stay=1">Verify me</a>')+'</div>'+
+  '<div class="metrics">'+met.map(function(m){return '<div class="metric"><small>'+m[0]+'</small><b>'+esc(m[1])+'</b></div>'}).join('')+'</div></div>'+
+  '<div class="duo"><div class="box"><div class="ring"><svg viewBox="0 0 78 78"><circle class="bg" cx="39" cy="39" r="34"/><circle class="fg" cx="39" cy="39" r="34" style="'+(ver?'':'animation:none;stroke-dashoffset:107')+'"/></svg></div><div><small>Verification</small><strong>'+(ver?'Complete':'Pending')+'</strong><small>'+(ver?'Discord and Roblox are linked':'Accounts connected, waiting for Verify me')+'</small></div></div>'+
+  '<div class="box"><div><small>Standing</small><strong class="g" style="'+(ver?'':'color:#f0b84a')+'">'+(ver?'Verified':'Not verified')+'</strong><small>'+(ver?'Member of the league server':'No verified role yet')+'</small></div></div></div></div>'+
+  '<div class="pane" id="ac"><h2>Linked accounts</h2><p class="sub">These accounts are connected to this league profile.</p><div class="panel" style="padding:10px">'+
+  '<div class="acct"><img alt="" src="'+esc(av(d.avatar))+'" onerror="this.src=FB"><div><strong>'+esc(d.username)+'</strong><small>Discord'+(own&&d.id?' \u00b7 ID '+esc(d.id):'')+'</small></div><span class="ok">Connected</span></div>'+
+  '<div class="acct rb" style="margin:0"><img alt="" src="'+esc(av(r.avatar))+'" onerror="this.src=FB"><div><strong>'+esc(r.displayName)+'</strong><small><a href="'+esc(rbUrl)+'" target="_blank" rel="noopener">@'+esc(r.username)+' \u2197</a></small></div><span class="ok">Connected</span></div></div></div></div>';
+  [].forEach.call(app.querySelectorAll('.tabs [data-t]'),function(b){b.onclick=function(){
+    [].forEach.call(app.querySelectorAll('.tabs [data-t]'),function(x){x.classList.toggle('on',x===b)});
+    [].forEach.call(app.querySelectorAll('.pane'),function(x){x.classList.toggle('on',x.id===b.dataset.t)});
+  }});
+}
+})();
+</script>
+<script src="tcl-ui.js" defer></script>
+</body></html>
